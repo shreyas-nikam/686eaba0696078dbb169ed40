@@ -1,4 +1,3 @@
-start-markdown
 # Streamlit Application Requirements Specification: Forward Contracts with Costs & Benefits Simulator
 
 ## 1. Application Overview
@@ -122,10 +121,3 @@ The application will leverage interactive plotting libraries to effectively comm
 *   **Open-Source Libraries:** Only open-source Python libraries from PyPI will be used.
 *   **Code Comments and Narrative:** Although this is a specification, the underlying code implementation will adhere to the lab's requirement for clear code comments and narrative.
 *   **Data Handling:** The application will incorporate robust input parsing and validation for cash flow data, as demonstrated in the Jupyter notebook's `parse_cash_flows` function.
-
-```
-```
-
-```
-
-end-markdown
