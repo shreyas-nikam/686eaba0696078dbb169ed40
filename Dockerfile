@@ -1,15 +1,24 @@
+# Use Python base image
+FROM python:3.12-slim
 
-FROM python:3.9-slim-buster
-
+# Set working directory in the container
 WORKDIR /app
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Copy requirements (adjust file name if needed)
+COPY requirements.txt /app/
 
-COPY . .
+# Install dependencies
+RUN pip install --upgrade pip     && pip install -r requirements.txt
 
-EXPOSE 8501
+# Copy the rest of the application code
+COPY . /app
 
-HEALTHCHECK CMD curl --fail http://localhost:8501 || exit 1
+# Set the port number via build-time or run-time environment
+# We'll default it to 8501, but you can override later.
+ENV PORT=8501
 
-ENTRYPOINT ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+# Expose the port so Docker maps it
+EXPOSE $PORT
+
+# Run Streamlit
+CMD ["bash", "-c", "streamlit run app.py --server.port=$PORT --server.headless=true"]
