@@ -71,3 +71,10 @@ st.caption("The purpose of this demonstration is solely for educational use and 
            "Any reproduction of this demonstration "
            "requires prior written consent from QuantUniversity. "
            "This lab was generated using the QuCreate platform. QuCreate relies on AI models for generating code, which may contain inaccuracies or errors.")
+
+
+# License
+st.markdown('''
+---
+**License:** QuantUniversity License
+''')
