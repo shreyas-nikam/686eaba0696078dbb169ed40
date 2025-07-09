@@ -142,3 +142,7 @@ For questions or further information, please feel free to reach out:
 *   **QuantUniversity**: [https://www.quantuniversity.com/](https://www.quantuniversity.com/)
 
 ---
+
+## License
+
+QuantUniversity License
