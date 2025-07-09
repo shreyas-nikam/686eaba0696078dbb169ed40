@@ -1,96 +1,132 @@
+# FX Forward Mark-to-Market (MTM) Analyzer
 
-# FX Forward MTM Analyzer
+## Project Title
+**FX Forward Mark-to-Market (MTM) Analyzer: An Interactive Streamlit Application**
 
-## 1. Application Overview
+## 1. Project Description
+This Streamlit application serves as an interactive laboratory tool designed to help users understand and analyze the Mark-to-Market (MTM) valuation of Foreign Exchange (FX) forward contracts. By providing a user-friendly interface, it allows finance students, practitioners, and enthusiasts to experiment with various market parameters (spot rates, interest rates, time to maturity) and observe their real-time impact on the FX forward price at inception and its subsequent MTM value.
 
-### Purpose and Objectives
-The FX Forward Mark-to-Market (MTM) Analyzer Streamlit application provides an interactive platform for simulating and analyzing the MTM value of Foreign Exchange (FX) forward contracts. Its primary objective is to enhance understanding of how interest rate differentials and spot rate changes influence the valuation dynamics and risk exposure of these contracts.
+The application calculates the initial forward price using the covered interest rate parity formula and then determines the MTM value of a long (or short) FX forward position based on changes in current market conditions. It features dynamic visualizations to illustrate the sensitivity of MTM to changes in current spot rates and interest rate differentials.
 
-Key objectives include:
-*   **Educate Users**: Help users understand how FX forward prices are determined based on interest rate differentials.
-*   **Analyze MTM Factors**: Allow users to analyze the various factors affecting the MTM value of an FX forward contract over its life.
-*   **Illustrate Concepts**: Visually explain concepts such as forward premium, forward discount, and gain/loss scenarios from different counterparty perspectives.
+## 2. Features
 
-### Target Audience and Use Cases
-**Target Audience**: Students, financial professionals, and anyone interested in derivatives, foreign exchange markets, and financial risk management.
+*   **Initial FX Forward Price Calculation:** Computes the forward price at contract inception ($t=0$) based on initial spot rate and risk-free interest rates (foreign and domestic) and contract maturity.
+*   **Mark-to-Market (MTM) Valuation:** Calculates the MTM value for both long and short FX forward positions at any given time ($t$) before maturity, reflecting changes in current spot rates and interest rates.
+*   **Interactive Input Parameters:**
+    *   Adjust initial spot rate ($S_{0,f/d}$), original contract maturity ($T$), and initial risk-free rates ($r_{f,initial}$, $r_{d,initial}$).
+    *   Modify current time ($t$), current spot rate ($S_{t,f/d}$), and current risk-free rates ($r_{f,current}$, $r_{d,current}$).
+*   **Currency Pair Presets:** Conveniently pre-fills input fields with example values for common currency pairs (USD/EUR, ZAR/EUR) to facilitate quick experimentation.
+*   **Dynamic Input Ranges:** Adjusts the input range for the current spot rate based on the initial spot rate for a more intuitive user experience.
+*   **Formula Display:** Shows the underlying mathematical formulas (LaTeX) for FX Forward Price and MTM calculations for clarity and educational purposes.
+*   **Visualizations (Plotly):**
+    *   **MTM vs. Interest Rate Differential:** A line plot showing how MTM changes as the current foreign risk-free rate varies.
+    *   **MTM vs. Current Spot FX Rate:** A line plot demonstrating the sensitivity of MTM to changes in the prevailing spot exchange rate.
+*   **Clear Metrics:** Displays calculated values prominently using Streamlit's `st.metric` for easy readability.
+*   **Comprehensive Explanations:** Provides markdown text to explain the concepts, interpretations of results, and references.
 
-**Use Cases**:
-*   **Educational Tool**: For learners to interactively explore theoretical concepts of FX forward pricing and valuation.
-*   **Scenario Analysis**: Practitioners can test hypothetical market movements and their impact on contract values.
-*   **Risk Understanding**: Visualize how changes in underlying parameters contribute to MTM gains or losses, aiding in risk assessment.
+## 3. Getting Started
 
-### Key Value Propositions
-*   **Interactive Learning**: Provides a hands-on experience that deepens understanding beyond static explanations.
-*   **Clarity of Concepts**: Simplifies complex financial formulas and their implications through dynamic visualizations.
-*   **Accessibility**: A user-friendly interface that requires no prior programming knowledge to operate, making sophisticated financial analysis accessible.
+### Prerequisites
 
-## 2. How to Run the Application
+Before you can run this application, ensure you have the following installed:
 
-To run this Streamlit application, follow these steps:
+*   **Python 3.8+**
+*   **pip** (Python package installer)
 
-### Using Docker (Recommended)
-1.  **Build the Docker image:**
-    ```bash
-    docker build -t fx-forward-mtm-analyzer .
-    ```
-2.  **Run the Docker container:**
-    ```bash
-    docker run -p 8501:8501 fx-forward-mtm-analyzer
-    ```
-3.  Open your web browser and navigate to `http://localhost:8501`.
+### Installation
 
-### Without Docker (Directly with Python)
 1.  **Clone the repository:**
     ```bash
-    git clone <repository_url>
-    cd <repository_name>
+    git clone https://github.com/your_username/fx-forward-mtm-analyzer.git
+    cd fx-forward-mtm-analyzer
     ```
-2.  **Create a virtual environment (optional but recommended):**
+    (Replace `your_username/fx-forward-mtm-analyzer` with the actual repository path if different).
+
+2.  **Create a virtual environment (recommended):**
     ```bash
     python -m venv venv
-    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+    # On Windows:
+    .\venv\Scripts\activate
+    # On macOS/Linux:
+    source venv/bin/activate
     ```
-3.  **Install the required packages:**
+
+3.  **Install the required Python packages:**
+    Create a `requirements.txt` file in the root directory of your project with the following content:
+    ```
+    streamlit
+    numpy
+    plotly
+    ```
+    Then install them using pip:
     ```bash
     pip install -r requirements.txt
     ```
-4.  **Run the Streamlit application:**
+
+## 4. Usage
+
+To run the Streamlit application:
+
+1.  Ensure you are in the root directory of the cloned repository and your virtual environment is activated (if used).
+2.  Execute the Streamlit command, specifying the path to the main application file:
     ```bash
-    streamlit run app.py
+    streamlit run application_pages/main_page.py
     ```
-5.  Open your web browser and navigate to the address provided by Streamlit (usually `http://localhost:8501`).
+3.  Your web browser should automatically open a new tab displaying the application. If not, copy the URL provided in your terminal (e.g., `http://localhost:8501`).
 
-## 3. Application Features
+### How to Use the Application:
 
-*   Interactive input widgets for initial and current contract parameters.
-*   Pre-fill functionality for currency pairs to set default rates.
-*   Real-time display of calculated FX Forward Price and MTM values.
-*   Interactive plots showing the impact of interest rate differentials and spot rate changes on MTM value using Plotly.
-*   Formulas displayed using LaTeX for clarity.
-*   Clear explanations and interpretation text for business implications.
+*   **Sidebar Controls:** All input parameters for contract setup and current market conditions are located in the sidebar.
+    *   Use the **"Select Currency Pair"** dropdown to pre-fill example values for spot rates and interest rates. You can then fine-tune these values.
+    *   Adjust the **"Initial Contract Parameters ($t=0$)"** to define your FX forward contract's inception terms.
+    *   Modify the **"Current Market Parameters ($t$)"** sliders and number inputs to simulate market movements and analyze MTM at different points in time or under varying conditions.
+*   **Main Display Area:**
+    *   Observe the calculated **FX Forward Price at Inception** and the **Current Mark-to-Market (MTM) Value** for both long and short positions.
+    *   Explore the interactive **Plotly charts** to visualize the sensitivity of the MTM value to changes in interest rate differentials and current spot FX rates. Hover over the plots for detailed values.
 
-## 4. Formulas Used
+## 5. Project Structure
 
-*   **FX Forward Price (continuous compounding)**:
-    $$F_{0,f/d}(T) = S_{0,f/d}e^{(r_f - r_d)T}$$
-*   **Mark-to-Market value of an FX forward contract (long position)**:
-    $$V_t(T) = S_{t,f/d} - F_{0,f/d}(T)e^{-(r_f - r_d)(T - t)}$$
-    Where:
-    *   $F_{0,f/d}(T)$ is the forward price at time 0 for a contract maturing at time $T$.
-    *   $S_{0,f/d}$ is the spot exchange rate at time 0 (foreign currency per domestic currency).
-    *   $S_{t,f/d}$ is the current spot exchange rate at time $t$.
-    *   $r_f$ is the foreign risk-free interest rate.
-    *   $r_d$ is the domestic risk-free interest rate.
-    *   $T$ is the original time to maturity of the forward contract in years.
-    *   $t$ is the current time in years from the contract inception ($0 \le t \le T$).
-    *   $e$ is the base of the natural logarithm.
+The project follows a simple, clean structure:
 
-## 5. References
-[16] - (Add your specific reference here for FX Forward Price formula)
-[17] - (Add your specific reference here for MTM value formula)
+```
+fx-forward-mtm-analyzer/
+├── application_pages/
+│   └── main_page.py       # Main Streamlit application script
+├── requirements.txt       # List of Python dependencies
+└── README.md              # This README file
+```
 
-## 6. License
-(Specify your licensing information here if applicable)
+## 6. Technology Stack
 
-## 7. Contact
-For any inquiries, please contact [Your Name/Organization].
+*   **Python 3.x**: The core programming language.
+*   **Streamlit**: The open-source app framework used to build the interactive web interface.
+*   **NumPy**: Essential library for numerical operations, particularly for generating data points for plots.
+*   **Plotly**: Used for creating interactive and dynamic visualizations (charts and graphs) within the Streamlit application.
+
+## 7. Contributing
+
+This project is primarily a lab exercise, but contributions are welcome! If you have suggestions for improvements, feature requests, or bug reports, please feel free to:
+
+1.  **Fork** the repository.
+2.  **Create a new branch** (`git checkout -b feature/your-feature-name`).
+3.  **Make your changes**.
+4.  **Commit your changes** (`git commit -m 'Add new feature'`).
+5.  **Push to the branch** (`git push origin feature/your-feature-name`).
+6.  **Open a Pull Request**.
+
+## 8. License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+*(Note: A `LICENSE` file should be created in the root directory if you're formally releasing this project.)*
+
+## 9. Contact
+
+For any questions or inquiries, please feel free to reach out:
+
+*   **Your Name/Institution:** [Your Name or Institution's Name Here]
+*   **Email:** [your.email@example.com]
+*   **GitHub:** [https://github.com/your_username](https://github.com/your_username) (Optional)
+
+---
+
+**Disclaimer:** This application is for educational and illustrative purposes only. It should not be used for actual financial trading or investment decisions. The formulas and assumptions are simplified and may not reflect all complexities of real-world financial markets.
