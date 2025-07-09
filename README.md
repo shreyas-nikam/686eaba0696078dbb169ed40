@@ -130,3 +130,8 @@ For any questions or inquiries, please feel free to reach out:
 ---
 
 **Disclaimer:** This application is for educational and illustrative purposes only. It should not be used for actual financial trading or investment decisions. The formulas and assumptions are simplified and may not reflect all complexities of real-world financial markets.
+
+
+## License
+
+QuantUniversity License
