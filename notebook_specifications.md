@@ -1,4 +1,3 @@
-```markdown
 # Technical Specification for Jupyter Notebook: Forward Rate Agreement (FRA) Settlement Simulator
 
 ## 1. Notebook Overview
@@ -262,4 +261,4 @@ The notebook will follow a clear, sequential structure:
 [2] CFA Institute. (n.d.). Pricing and Valuation of Forward Contracts and for an Underlying with.... Retrieved from https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2025/pricing-valuation-forward-contracts-underlying-varying-maturities.
 
 [3] Examples.com. (n.d.). Pricing and Valuation of Forward Contracts and Forwards - Examples. Retrieved from https://www.examples.com/cfa/pricing-and-valuation-of-forward-contracts-and-forwards.
-```
+
